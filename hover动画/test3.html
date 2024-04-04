@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Hover Effect</title>
+    <style>
+        #hoverButton {
+            position: relative;
+        }
+
+        /* 初始状态下，新小框隐藏 */
+        #miniBox {
+            width: 50px; /* 迷你版的宽度 */
+            height: 50px; /* 迷你版的高度 */
+            background-color: lightblue;
+            position: absolute;
+        }
+        
+        /* 变大后的小框 */
+        #newBox {
+            display: none; /* 初始状态下隐藏 */
+            width: 50px; /* 初始宽度和迷你版一致 */
+            height: 50px; /* 初始高度和迷你版一致 */
+            background-color: lightblue;
+            position: absolute;
+            transition: width 0.5s, height 0.5s; /* 宽度和高度的变化采用0.5秒的过渡效果 */
+        }
+    </style>
+</head>
+<body>
+    <button id="hoverButton">Hover over me</button>
+    <div id="miniBox"></div>
+    <div id="newBox"></div>
+
+    <script>
+        const button = document.getElementById('hoverButton');
+        const newBox = document.getElementById('newBox');
+        const minibox = document.getElementById('miniBox');
+
+        button.addEventListener('mouseover', () => {
+            // 当鼠标悬停在按钮上时，显示新小框并缓慢放大
+            newBox.style.display = 'block';
+            minibox.style.display = 'none';
+            setTimeout(() => {
+                newBox.style.width = '100px';
+                newBox.style.height = '100px';
+            }, 10); // 延迟一小段时间后再改变大小，以便过渡效果生效
+        });
+
+        button.addEventListener('mouseout', () => {
+            minibox.style.display = 'block';
+            // 当鼠标移出按钮时，缓慢减小新小框的大小并隐藏
+            newBox.style.width = '50px';
+            newBox.style.height = '50px';
+            setTimeout(() => {
+                newBox.style.display = 'none';
+            }, 500); // 过渡效果持续0.5秒
+        });
+    </script>
+</body>
+</html>

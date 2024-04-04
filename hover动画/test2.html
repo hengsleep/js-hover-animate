@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Hover Effect</title>
+    <style>
+        #hoverButton {
+            position: relative;
+        }
+
+        /* 迷你版小框 */
+        #miniBox {
+            width: 50px; /* 初始宽度 */
+            height: 50px; /* 初始高度 */
+            background-color: lightblue;
+            position: absolute;
+        }
+
+        /* 鼠标悬停时的大框 */
+        #hoverButton:hover + #newBox {
+            width: 100px; /* 变大后的宽度 */
+            height: 100px; /* 变大后的高度 */
+        }
+
+        /* 变大后的小框 */
+        #newBox {
+            display: none; /* 初始状态下隐藏 */
+            width: 0;
+            height: 0;
+            background-color: lightblue;
+            position: absolute;
+            transition: width 0.5s, height 0.5s; /* 缓慢变化 */
+        }
+    </style>
+</head>
+<body>
+    <button id="hoverButton">Hover over me</button>
+    <div id="miniBox"></div>
+    <div id="newBox"></div>
+
+    <script>
+        const button = document.getElementById('hoverButton');
+        const newBox = document.getElementById('newBox');
+
+        button.addEventListener('mouseover', () => {
+            // 当鼠标悬停在按钮上时，显示新小框并缓慢放大
+            newBox.style.display = 'block';
+            newBox.style.width = '100px';
+            newBox.style.height = '100px';
+        });
+
+        button.addEventListener('mouseout', () => {
+            // 当鼠标移出按钮时，隐藏新小框
+            newBox.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

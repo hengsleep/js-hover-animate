@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Hover Effect</title>
+    <style>
+        #newBox {
+            display: none;/* 初始状态下，新小框隐藏 */
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <button id="hoverButton">Hover over me</button>
+    <div id="newBox"></div>
+
+    <script>
+        const button = document.getElementById('hoverButton');
+        const newBox = document.getElementById('newBox');
+
+        button.addEventListener('mouseover', () => {
+            // 当鼠标悬停在按钮上时，显示新小框并缓慢出现
+            newBox.style.display = 'block';
+            newBox.style.opacity = 0;
+            let opacity = 0;
+            const interval = setInterval(() => {
+                if (opacity < 1) {
+                    opacity += 0.1;
+                    newBox.style.opacity = opacity;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 50); // 50ms 为一个渐变步骤的时间间隔
+        });
+
+        button.addEventListener('mouseout', () => {
+            // 当鼠标移出按钮时，隐藏新小框
+            newBox.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
